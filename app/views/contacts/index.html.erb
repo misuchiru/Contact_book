@@ -1,0 +1,28 @@
+<h2>內西名單</h2>
+<hr>
+<%= link_to "新增名單", new_contact_path, class: "btn btn-primary" %>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>序</th>
+      <th>地區</th>
+      <th>姓名</th>
+      <th>手機</th>
+      <th>市話</th>
+      <th colspan="2">操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @contacts.each do |contact| %>
+      <tr>
+        <td><%= contact.id %></td>
+        <td><%= contact.district.title %></td>
+        <td><%= contact.name %></td>
+        <td><%= contact.cell_phone %></td>
+        <td><%= contact.phone %></td>
+        <td><%= link_to fa_icon("pencil", text: "編輯"), edit_contact_path(contact), class: "btn btn-warning" %></td>
+        <td><%= link_to fa_icon("trash", text: "刪除"), contact_path(contact), method: :delete, class: "btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
