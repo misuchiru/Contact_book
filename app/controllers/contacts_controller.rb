@@ -1,8 +1,12 @@
 class ContactsController < ApplicationController
-  before_action :find_contact, only: [:edit, :update, :destroy]
+  before_action :find_contact, only: [:show, :edit, :update, :destroy]
 
   def index
     @contacts = Contact.all
+  end
+
+  def show
+    @visits = @contact.visits
   end
 
   def new

@@ -35,6 +35,7 @@ gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'simple_form'
 gem 'devise'
+gem 'rails-i18n'
 gem "font-awesome-rails"
 
 group :production do
