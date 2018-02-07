@@ -1,8 +1,16 @@
 class ContactsController < ApplicationController
-  before_action :find_contact, only: [:edit, :update, :destroy]
+  before_action :find_contact, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except:[:welcome]
+  before_action :comfirm_required, except:[:welcome]
 
+  def welcome
+  end
   def index
     @contacts = Contact.all
+  end
+
+  def show
+    @visits = @contact.visits
   end
 
   def new

@@ -1,0 +1,50 @@
+<h2>使用者列表</h2>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Email</th>
+      <th>權限</th>
+      <th colspan="2">認證</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td>
+          <%= user.id %>
+        </td>
+        <td>
+          <%= user.email %>
+        </td>
+        <td>
+          <% if user.comfirm? %>
+            已認證
+          <% else %>
+            尚未認證
+          <% end %>
+          /
+          <% if user.admin? %>
+            管理者
+          <% else %>
+            一般使用者
+          <% end %>
+        </td>
+        <td>
+          <% if user.comfirm? %>
+            <%= link_to "取消認證", to_unconfirmed_user_path(user), method: :post, class: "btn btn-warning btn-xs" %>
+          <% else %>
+            <%= link_to "完成認證", to_confirm_user_path(user), method: :post, class: "btn btn-success btn-xs" %>
+          <% end %>
+          /
+          <% if user.admin? %>
+            <%= link_to "轉為使用者", to_user_user_path(user), method: :post, class: "btn btn-warning btn-xs" %>
+          <% else %>
+            <%= link_to "轉為管理者", to_admin_user_path(user), method: :post, class: "btn btn-success btn-xs" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

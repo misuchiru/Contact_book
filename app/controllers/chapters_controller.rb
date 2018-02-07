@@ -1,5 +1,7 @@
 class ChaptersController < ApplicationController
   before_action :find_chapter, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :admin_required
   def index
     @chapters = Chapter.all
   end

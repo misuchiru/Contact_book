@@ -35,7 +35,12 @@ gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'simple_form'
 gem 'devise'
+gem 'devise-i18n'
+gem 'rails-i18n'
 gem "font-awesome-rails"
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'koala' # 可以將錯誤的 session 刪掉避免註冊失敗
 
 group :production do
   gem 'pg'

@@ -1,5 +1,7 @@
 class DistrictsController < ApplicationController
   before_action :find_district, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :admin_required
 
   def index
     @districts = District.all
@@ -38,7 +40,7 @@ class DistrictsController < ApplicationController
   def find_district
     @district = District.find_by(id: params[:id])
   end
-  
+
   def district_params
     params.require(:district).permit(:title, :chapter_id)
   end
