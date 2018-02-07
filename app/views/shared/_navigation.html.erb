@@ -6,10 +6,12 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li><%= link_to "內西名單", contacts_path %></li>
-            <% if current_user.admin? %>
-              <li><%= link_to "支部設定", chapters_path %></li>
-              <li><%= link_to "地區設定", districts_path %></li>
-              <li><%= link_to "使用者設定", users_path %></li>
+            <% if current_user %>
+              <% if current_user.admin? %>
+                <li><%= link_to "支部設定", chapters_path %></li>
+                <li><%= link_to "地區設定", districts_path %></li>
+                <li><%= link_to "使用者設定", users_path %></li>
+              <% end %>
             <% end %>
           </ul>
           <ul class="nav navbar-nav navbar-right">
