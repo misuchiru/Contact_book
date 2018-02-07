@@ -1,6 +1,8 @@
 class VisitsController < ApplicationController
   before_action :find_contact, only: [:new, :create]
   before_action :find_visit, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :comfirm_required
   def new
     @visit = @contact.visits.new
   end
