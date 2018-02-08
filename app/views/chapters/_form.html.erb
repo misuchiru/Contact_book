@@ -1,7 +1,11 @@
 <%= simple_form_for(chapter) do |f| %>
   <%= f.input :title, label: "名稱" %>
-  <div class="form-inline text-center">
-    <%= f.submit "送出", class: "btn btn-primary" %>
-    <%= link_to "回支部列表", chapters_path, class: "btn btn-default" %>
-  </div>
 <% end %>
+<hr>
+<div class="form-inline text-center">
+  <%= link_to fa_icon("arrow-left", text: "回支部列表"), chapters_path, class: "btn btn-default" %>
+  <%= button_tag type: 'submit', class: "btn btn-sm btn-primary" do %>
+    <i class="fa fa-check" aria-hidden="true"></i>
+    送出
+  <% end %>
+</div>

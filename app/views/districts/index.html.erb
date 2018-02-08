@@ -1,23 +1,24 @@
-<h2>地區</h2>
+<h2>
+  地區
+  <%= link_to fa_icon("plus", text: "新增地區"), new_district_path, class: "btn btn-primary btn-sm pull-right" %>
+</h2>
 <hr>
-<%= link_to "新增地區", new_district_path, class: "btn btn-primary" %>
 <table class="table table-hover">
   <thead>
     <tr>
       <th>序</th>
       <th>支部名稱</th>
       <th>地區名稱</th>
-      <th colspan="2">操作</th>
+      <th>刪除</th>
     </tr>
   </thead>
   <tbody>
-    <% @districts.each do |district| %>
+    <% @districts.each_with_index do |district,index| %>
       <tr>
-        <td><%= district.id  %></td>
+        <td><%= index + 1  %></td>
         <td><%= district.chapter.title %></td>
-        <td><%= district.title  %></td>
-        <td><%= link_to fa_icon("pencil", text: "編輯"), edit_district_path(district), class: "btn btn-warning" %></td>
-        <td><%= link_to fa_icon("trash", text: "刪除"), district_path(district), method: :delete, class: "btn btn-danger", data: { confirm: "是否確認要刪除資料？" } %></td>
+        <td><%= link_to district.title, edit_district_path(district) %></td>
+        <td><%= link_to fa_icon("trash", text: "刪除"), district_path(district), method: :delete, class: "btn btn-sm btn-danger", data: { confirm: "是否確認要刪除資料？" } %></td>
       </tr>
     <% end %>
   </tbody>
