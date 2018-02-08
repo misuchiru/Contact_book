@@ -1,6 +1,6 @@
 <h2>家訪紀錄</h2>
 <br>
-<table class="table">
+<table class="table table-bordered">
   <tr>
     <td>姓名：<%= @contact.name %></td>
     <td>支部：<%= @contact.district.chapter.title %></td>
@@ -8,11 +8,10 @@
   </tr>
   <tr>
     <td>手機：<%= @contact.cell_phone %></td>
-    <td>市話：<%= @contact.phone %></td>
+    <td colspan="2">市話：<%= @contact.phone %></td>
   </tr>
 </table>
-<hr>
-<%= link_to "新增紀錄", new_visit_path(contact_id: @contact.id), class: "btn btn-primary" %>
+<%= link_to fa_icon("edit", text: "新增紀錄"), new_visit_path(contact_id: @contact.id), class: "btn btn-sm btn-primary" %>
 <table class="table">
   <thead>
     <tr>
@@ -26,10 +25,14 @@
     <% @visits.each_with_index do |visit, index| %>
       <tr>
         <td><%= index + 1 %></td>
-        <td><%= visit.visit_time.strftime("%F") %></td>
+        <td><%= link_to visit.visit_time.strftime("%F"), edit_visit_path(visit) %></td>
         <td><%= visit.description %></td>
         <td><%= link_to fa_icon("trash", text: "刪除"), visit_path(visit), method: :delete, data: { confirm: "確定要刪除？" }, class: "btn btn-sm btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<hr>
+<div class="form-inline text-center">
+  <%= link_to fa_icon("arrow-left", text: "回名單列表"), contacts_path(district: @contact.district.title), class: "btn btn-default" %>
+</div>
