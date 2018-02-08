@@ -1,21 +1,22 @@
-<h2>支部</h2>
+<h2>
+  支部
+  <%= link_to fa_icon("plus", text: "新增支部"), new_chapter_path, class: "btn btn-primary btn-sm pull-right" %>
+</h2>
 <hr>
-<%= link_to "新增支部", new_chapter_path, class: "btn btn-primary" %>
 <table class="table table-hover">
   <thead>
     <tr>
       <th>序</th>
       <th>名稱</th>
-      <th colspan="2">操作</th>
+      <th>刪除</th>
     </tr>
   </thead>
   <tbody>
-    <% @chapters.each do |chapter| %>
+    <% @chapters.each_with_index do |chapter,index| %>
       <tr>
-        <td><%= chapter.id  %></td>
-        <td><%= chapter.title  %></td>
-        <td><%= link_to fa_icon("pencil", text: "編輯"), edit_chapter_path(chapter), class: "btn btn-warning" %></td>
-        <td><%= link_to fa_icon("trash", text: "刪除"), chapter_path(chapter), method: :delete, class: "btn btn-danger", data: { confirm: "是否確認要刪除資料？" } %></td>
+        <td><%= index + 1  %></td>
+        <td><%= link_to chapter.title, edit_chapter_path(chapter) %></td>
+        <td><%= link_to fa_icon("trash", text: "刪除"), chapter_path(chapter), method: :delete, class: "btn btn-sm btn-danger", data: { confirm: "是否確認要刪除資料？" } %></td>
       </tr>
     <% end %>
   </tbody>

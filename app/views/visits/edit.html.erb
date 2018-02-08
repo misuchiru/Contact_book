@@ -1,0 +1,12 @@
+<h2>編輯家訪紀錄</h2>
+<hr>
+<%= simple_form_for(@visit) do |f| %>
+  <%= f.input :visit_time, label: "家訪時間" %>
+  <%= f.input :description, :input_html => {:rows => 8}, label: "家訪紀錄" %>
+  <%= f.input :visitors, label: "同行人員" %>
+  <hr>
+  <div class="form-inline text-center">
+    <%= f.submit "送出", data: { disable_with: "紀錄送出中..." }, class: "btn btn-primary" %>
+    <%= link_to "回紀錄列表", contact_path(@visit.contact), class: "btn btn-default" %>
+  </div>
+<% end %>

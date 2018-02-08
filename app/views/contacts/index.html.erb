@@ -1,8 +1,19 @@
 <h2>
   內西名單
-  <%= link_to "新增名單", new_contact_path, class: "btn btn-primary btn-sm pull-right" %>
+  <%= link_to fa_icon("user-plus", text: "新增名單"), new_contact_path, class: "btn btn-primary btn-sm pull-right" %>
 </h2>
 <hr>
+<ul class="nav nav-tabs nav-justified">
+  <% if !params[:district] %>
+    <li role="presentation" class="active"><%= link_to "全部", contacts_path %></a></li>
+  <% else %>
+    <li role="presentation"><%= link_to "全部", contacts_path %></a></li>
+  <% end %>
+  <% @districts.each do |district| %>
+    <li role="presentation"  class="<%= 'active' if params[:district] == district.title %>"><%= link_to district.title, contacts_path(district: district.title) %></li>
+  <% end %>
+</ul>
+<br>
 <table class="table table-hover">
   <thead>
     <tr>

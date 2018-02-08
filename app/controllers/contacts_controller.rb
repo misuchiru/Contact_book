@@ -6,7 +6,13 @@ class ContactsController < ApplicationController
   def welcome
   end
   def index
-    @contacts = Contact.all
+    @districts = District.all
+    if params[:district]
+      @district = District.find_by(title: params[:district])
+      @contacts = @district.contacts
+    else
+      @contacts = Contact.all
+    end
   end
 
   def show
@@ -20,7 +26,7 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(contact_params)
     if @contact.save
-      redirect_to contacts_path
+      redirect_to contacts_path(district: @contact.district.title)
     else
       render :new
     end
@@ -31,7 +37,7 @@ class ContactsController < ApplicationController
 
   def update
     if @contact.update(contact_params)
-      redirect_to contacts_path
+      redirect_to contacts_path(district: @contact.district.title)
     else
       render :edit
     end
@@ -39,7 +45,7 @@ class ContactsController < ApplicationController
 
   def destroy
     @contact.destroy if @contact
-    redirect_to contacts_path
+    redirect_to contacts_path(district: @contact.district.title)
   end
 
   private
