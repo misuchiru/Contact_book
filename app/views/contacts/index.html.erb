@@ -3,7 +3,7 @@
   <%= link_to fa_icon("user-plus", text: "新增名單"), new_contact_path, class: "btn btn-primary btn-sm pull-right" %>
 </h2>
 <hr>
-<ul class="nav nav-tabs nav-justified">
+<ul class="nav nav-tabs">
   <% if !params[:district] %>
     <li role="presentation" class="active"><%= link_to "全部", contacts_path %></a></li>
   <% else %>
